@@ -13,8 +13,8 @@ public class MemberController {
     private final Random random = new Random();
 
     @RequestMapping("/")
-    public String join() {
-        memberService.join("memeber" + random.nextInt());
+    public String join(boolean throwException) {
+        memberService.join("memeber" + random.nextInt(), throwException);
         return "ok";
     }
 }
