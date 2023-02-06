@@ -20,7 +20,7 @@ class MemberServiceTest {
     private MemberEventListener memberEventListener;
 
     @Test
-    void 만약_예외가_발생하지_않는다면_printMemberLog_메서드가_호출된다() {
+    void 회원가입을_한다면_printMemberLog_메서드가_호출된다() {
         memberService.join("memberA", false);
 
         verify(memberEventListener).printMemberLog(any());
