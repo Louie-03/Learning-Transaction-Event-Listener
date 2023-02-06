@@ -1,6 +1,8 @@
 package transaction.event.listener.learning.member;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
@@ -26,4 +28,12 @@ class MemberServiceTest {
         verify(memberEventListener).printMemberLog(any());
     }
 
+    @Test
+    void 회원가입에_실패해도_printMemberLog_메서드가_호출된다() {
+        assertThatThrownBy(() -> memberService.join("memberA", true))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessage("예외가 발생했습니다.");
+
+        verify(memberEventListener, never()).printMemberLog(any());
+    }
 }
