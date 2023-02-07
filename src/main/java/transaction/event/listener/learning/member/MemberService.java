@@ -23,5 +23,7 @@ public class MemberService {
         memberRepository.save(member);
 
         publisher.publishEvent(new MemberJoinEvent(member));
+
+        System.out.println("MemberService.join : " + Thread.currentThread().getName());
     }
 }
